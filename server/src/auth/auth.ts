@@ -1,13 +1,16 @@
 import { betterAuth } from "better-auth";
-import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { getDatabase } from "../db/connection";
+import { mongodbAdapter } from "@better-auth/mongo-adapter";
+import { getDatabase, getMongoClient } from "../db/connection";
 import { config } from "../config/env";
 
 export const getAuth = () => {
   const db = getDatabase();
+  const client = getMongoClient();
 
   return betterAuth({
-    database: mongodbAdapter(db),
+    database: mongodbAdapter(db, {
+      client,
+    }),
     secret: config.betterAuthSecret,
     baseURL: config.betterAuthUrl,
     trustedOrigins: [
