@@ -41,8 +41,9 @@ export const RegisterForm: React.FC = () => {
       }
 
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err?.message || "An unexpected error occurred during registration.");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "An unexpected error occurred during registration.";
+      setError(message);
       setIsLoading(false);
     }
   };

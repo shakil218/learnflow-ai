@@ -2,18 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Sparkles, Compass, Flame, LogOut, User } from "lucide-react";
 import { useSession, signOut } from "@/lib/auth-client";
-import { Button } from "./ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export const Navbar: React.FC = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const { data: session, isPending } = useSession();
 
   const handleSignOut = async () => {
     await signOut();
-    window.location.href = "/login";
+    router.push("/login");
   };
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Sparkles, Heart } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
           <Sparkles className="w-4 h-4 text-indigo-500" />
           <span>
-            LearnFlow AI &copy; {new Date().getFullYear()} — Built for intelligent, self-paced learning.
+            LearnFlow AI &copy; 2026 — Built for intelligent, self-paced learning.
           </span>
         </div>
         <div className="flex items-center gap-6 text-sm text-zinc-500 dark:text-zinc-400">
