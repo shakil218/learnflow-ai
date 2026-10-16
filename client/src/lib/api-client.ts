@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "https://learnflow-ai-server-ecru.vercel.app";
 
 interface FetchOptions extends RequestInit {
   data?: unknown;

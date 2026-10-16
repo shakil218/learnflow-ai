@@ -15,6 +15,7 @@ export const getAuth = () => {
     baseURL: config.betterAuthUrl,
     trustedOrigins: [
       config.clientUrl,
+      "https://learnflow-ai-eight.vercel.app",
       "http://localhost:3000",
       "http://127.0.0.1:3000",
     ],

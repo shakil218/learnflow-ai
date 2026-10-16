@@ -10,6 +10,9 @@ export const config = {
   dbName: process.env.DB_NAME ?? "learnflow_ai",
   betterAuthSecret:
     process.env.BETTER_AUTH_SECRET ?? "default_learnflow_development_secret_key_32chars",
-  betterAuthUrl: process.env.BETTER_AUTH_URL ?? "http://localhost:5000",
-  clientUrl: process.env.CLIENT_URL ?? "http://localhost:3000",
+  betterAuthUrl:
+    process.env.BETTER_AUTH_URL ??
+    "https://learnflow-ai-server-ecru.vercel.app",
+  clientUrl:
+    process.env.CLIENT_URL ?? "https://learnflow-ai-eight.vercel.app",
 };
