@@ -1,5 +1,4 @@
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "https://learnflow-ai-server-ecru.vercel.app";
+import { clientConfig } from "./config";
 
 interface FetchOptions extends RequestInit {
   data?: unknown;
@@ -9,7 +8,8 @@ export async function apiClient<T>(
   endpoint: string,
   { data, headers: customHeaders, ...customConfig }: FetchOptions = {}
 ): Promise<T> {
-  const url = `${API_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
+  const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  const url = `${clientConfig.apiUrl}${cleanEndpoint}`;
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",

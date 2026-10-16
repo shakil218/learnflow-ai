@@ -85,7 +85,7 @@ app.use("/api/planner", moduleTaskRouter);
 app.use("/api/study", studyQuizRouter);
 
 // Start HTTP listener for local development
-if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+if (!config.isProduction || !config.isVercel) {
   connectToDatabase()
     .then(() => {
       app.listen(config.port, () => {
