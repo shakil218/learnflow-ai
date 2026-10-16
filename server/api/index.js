@@ -83,9 +83,18 @@ var getAuth = () => {
     trustedOrigins: [
       config.clientUrl,
       "https://learnflow-ai-eight.vercel.app",
+      "https://learnflow-phahay3gm-shakils-projects-ddb9ccb7.vercel.app",
       "http://localhost:3000",
       "http://127.0.0.1:3000"
     ],
+    advanced: {
+      useSecureCookies: config.isProduction,
+      defaultCookieAttributes: {
+        sameSite: "none",
+        secure: true,
+        partitioned: true
+      }
+    },
     emailAndPassword: {
       enabled: true,
       autoSignIn: true,
