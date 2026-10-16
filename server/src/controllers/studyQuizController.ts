@@ -37,7 +37,7 @@ export class StudyQuizController {
   static async getQuiz(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { roadmapId } = req.params;
+      const roadmapId = String(req.params.roadmapId);
 
       const roadmap = await RoadmapService.getRoadmapById(roadmapId, userId);
       if (!roadmap) {

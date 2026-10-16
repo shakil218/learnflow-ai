@@ -20,7 +20,7 @@ export class ModuleTaskController {
   static async getModulesByRoadmap(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { roadmapId } = req.params;
+      const roadmapId = String(req.params.roadmapId);
 
       const modules = await ModuleTaskService.getModulesByRoadmap(roadmapId, userId);
       res.json({ success: true, data: modules });
@@ -33,7 +33,7 @@ export class ModuleTaskController {
   static async deleteModule(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
 
       const success = await ModuleTaskService.deleteModule(id, userId);
       if (!success) {
@@ -65,7 +65,7 @@ export class ModuleTaskController {
   static async updateTaskStatus(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
       const input = req.body as UpdateTaskStatusInput;
 
       const updated = await ModuleTaskService.updateTaskStatus(id, userId, input);
@@ -84,7 +84,7 @@ export class ModuleTaskController {
   static async deleteTask(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
 
       const success = await ModuleTaskService.deleteTask(id, userId);
       if (!success) {

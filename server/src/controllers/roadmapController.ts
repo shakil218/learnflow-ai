@@ -20,7 +20,7 @@ export class RoadmapController {
   static async getById(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
 
       const roadmap = await RoadmapService.getRoadmapById(id, userId);
       if (!roadmap) {
@@ -117,7 +117,7 @@ export class RoadmapController {
   static async update(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
       const input = req.body as UpdateRoadmapInput;
 
       const updated = await RoadmapService.updateRoadmap(id, userId, input);
@@ -136,7 +136,7 @@ export class RoadmapController {
   static async delete(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
       const userId = req.user!.id;
-      const { id } = req.params;
+      const id = String(req.params.id);
 
       const success = await RoadmapService.deleteRoadmap(id, userId);
       if (!success) {
