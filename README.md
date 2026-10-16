@@ -6,6 +6,14 @@ Built as an independent full-stack project for the **NT Tech Innovation Technica
 
 ---
 
+## 🌐 Live Deployments
+
+- **Frontend Client**: [https://learnflow-ai-eight.vercel.app](https://learnflow-ai-eight.vercel.app)
+- **Backend API Server**: [https://learnflow-ai-server-ecru.vercel.app](https://learnflow-ai-server-ecru.vercel.app)
+- **API Health Check**: [https://learnflow-ai-server-ecru.vercel.app/health](https://learnflow-ai-server-ecru.vercel.app/health)
+
+---
+
 ## 🌟 Key Features
 
 1. **AI Curriculum & Roadmap Synthesis**:
