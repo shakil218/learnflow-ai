@@ -8,8 +8,11 @@ import { signUp } from "@/lib/auth-client";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
+import { useToast } from "@/components/ui/Toast";
+
 export const RegisterForm: React.FC = () => {
   const router = useRouter();
+  const { success, error: toastError } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,15 +38,21 @@ export const RegisterForm: React.FC = () => {
       });
 
       if (result.error) {
-        setError(result.error.message || "Failed to register. Please try again.");
+        const errorMsg = result.error.message || "Failed to register. Please try again.";
+        setError(errorMsg);
+        toastError(errorMsg);
         setIsLoading(false);
         return;
       }
 
-      router.push("/dashboard");
+      success("Account created successfully! Redirecting...");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 500);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "An unexpected error occurred during registration.";
       setError(message);
+      toastError(message);
       setIsLoading(false);
     }
   };

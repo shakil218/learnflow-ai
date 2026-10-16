@@ -8,8 +8,11 @@ import { signIn } from "@/lib/auth-client";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
+import { useToast } from "@/components/ui/Toast";
+
 export const LoginForm: React.FC = () => {
   const router = useRouter();
+  const { success, error: toastError } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -27,15 +30,21 @@ export const LoginForm: React.FC = () => {
       });
 
       if (result.error) {
-        setError(result.error.message || "Invalid credentials. Please verify your email and password.");
+        const errorMsg = result.error.message || "Invalid credentials. Please verify your email and password.";
+        setError(errorMsg);
+        toastError(errorMsg);
         setIsLoading(false);
         return;
       }
 
-      router.push("/dashboard");
+      success("Signed in successfully! Redirecting...");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 500);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "An unexpected error occurred during login.";
       setError(message);
+      toastError(message);
       setIsLoading(false);
     }
   };

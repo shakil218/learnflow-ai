@@ -5,6 +5,7 @@ import { Sparkles, Compass, Clock, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse, RoadmapItem } from "@/types/api";
+import { useToast } from "@/components/ui/Toast";
 
 interface AiRoadmapGeneratorProps {
   onSuccess: (newRoadmap: RoadmapItem) => void;
@@ -15,6 +16,7 @@ export const AiRoadmapGenerator: React.FC<AiRoadmapGeneratorProps> = ({
   onSuccess,
   onCancel,
 }) => {
+  const { success, error: toastError } = useToast();
   const [topic, setTopic] = useState("");
   const [targetSkillLevel, setTargetSkillLevel] = useState<"beginner" | "intermediate" | "advanced">("beginner");
   const [weeklyAvailableHours, setWeeklyAvailableHours] = useState(6);
@@ -45,13 +47,17 @@ export const AiRoadmapGenerator: React.FC<AiRoadmapGeneratorProps> = ({
       });
 
       if (response.success && response.data) {
+        success(`AI Roadmap for "${response.data.title}" synthesized successfully!`);
         onSuccess(response.data);
       } else {
-        setError(response.message || "Failed to generate roadmap.");
+        const errorMsg = response.message || "Failed to generate roadmap.";
+        setError(errorMsg);
+        toastError(errorMsg);
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Failed to synthesize AI curriculum.";
       setError(message);
+      toastError(message);
     } finally {
       setIsLoading(false);
     }

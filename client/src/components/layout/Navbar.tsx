@@ -7,14 +7,18 @@ import { Sparkles, Compass, Flame, LogOut, User } from "lucide-react";
 import { useSession, signOut } from "@/lib/auth-client";
 import { Button } from "@/components/ui/Button";
 
+import { useToast } from "@/components/ui/Toast";
+
 export const Navbar: React.FC = () => {
   const router = useRouter();
+  const { info } = useToast();
   const pathname = usePathname();
   const { data: session, isPending } = useSession();
 
   const handleSignOut = async () => {
+    info("Signing out...");
     await signOut();
-    router.push("/login");
+    window.location.href = "/login";
   };
 
   return (
