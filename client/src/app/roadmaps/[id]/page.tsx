@@ -13,6 +13,8 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
+export const dynamic = "force-dynamic";
+
 export default function RoadmapDetailPage() {
   const params = useParams();
   const router = useRouter();

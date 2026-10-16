@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-full flex flex-col`}
       >
-        <Navbar />
+        <React.Suspense fallback={<div className="h-16 w-full border-b border-zinc-200/80" />}>
+          <Navbar />
+        </React.Suspense>
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
       </body>
