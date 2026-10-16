@@ -12,31 +12,19 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         reverseOrder={false}
         toastOptions={{
           duration: 3500,
-          style: {
-            borderRadius: "14px",
-            padding: "12px 18px",
-            fontSize: "14px",
-            fontWeight: "600",
-            boxShadow:
-              "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2)",
-          },
+          className:
+            "rounded-2xl px-4 py-3 text-sm font-semibold shadow-2xl backdrop-blur-md transition-all duration-300",
           success: {
-            style: {
-              background: "#059669", // Vibrant Emerald 600
-              color: "#ffffff",
-              border: "1px solid #10b981",
-            },
+            className:
+              "bg-emerald-600 text-white border border-emerald-500 shadow-emerald-950/20",
             iconTheme: {
               primary: "#ffffff",
               secondary: "#059669",
             },
           },
           error: {
-            style: {
-              background: "#e11d48", // Vibrant Rose 600
-              color: "#ffffff",
-              border: "1px solid #f43f5e",
-            },
+            className:
+              "bg-rose-600 text-white border border-rose-500 shadow-rose-950/20",
             iconTheme: {
               primary: "#ffffff",
               secondary: "#e11d48",
@@ -51,25 +39,27 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 export const useToast = () => {
   return {
     toast: (msg: string) => toast(msg),
-    success: (msg: string) => toast.success(msg),
-    error: (msg: string) => toast.error(msg),
+    success: (msg: string) =>
+      toast.success(msg, {
+        className:
+          "bg-emerald-600 text-white border border-emerald-500 shadow-emerald-950/20 font-semibold rounded-2xl px-4 py-3 text-sm",
+      }),
+    error: (msg: string) =>
+      toast.error(msg, {
+        className:
+          "bg-rose-600 text-white border border-rose-500 shadow-rose-950/20 font-semibold rounded-2xl px-4 py-3 text-sm",
+      }),
     warning: (msg: string) =>
       toast(msg, {
         icon: "⚠️",
-        style: {
-          background: "#d97706", // Vibrant Amber 600
-          color: "#ffffff",
-          border: "1px solid #f59e0b",
-        },
+        className:
+          "bg-amber-600 text-white border border-amber-500 shadow-amber-950/20 font-semibold rounded-2xl px-4 py-3 text-sm",
       }),
     info: (msg: string) =>
       toast(msg, {
         icon: "ℹ️",
-        style: {
-          background: "#4f46e5", // Vibrant Indigo 600
-          color: "#ffffff",
-          border: "1px solid #6366f1",
-        },
+        className:
+          "bg-indigo-600 text-white border border-indigo-500 shadow-indigo-950/20 font-semibold rounded-2xl px-4 py-3 text-sm",
       }),
   };
 };
